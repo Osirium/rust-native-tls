@@ -1,3 +1,11 @@
+# Osirium Modifications
+
+This fork contains a modified v0.2.4 that includes SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS, 
+required for support of Windows 2k8 TLS1.0. 
+
+The modification had to happen in this fork, as `native-tls` doesn't 
+provide low level access to OpenSSL Contexts.
+
 # rust-native-tls
 
 [![CircleCI](https://circleci.com/gh/sfackler/rust-native-tls.svg?style=shield)](https://circleci.com/gh/sfackler/rust-native-tls) [![Build Status](https://travis-ci.org/sfackler/rust-native-tls.svg?branch=master)](https://travis-ci.org/sfackler/rust-native-tls)

@@ -1,3 +1,11 @@
+# Osirium Modifications
+
+This fork contains modifications that include SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS, 
+required for support of Windows 2k8 TLS1.0. 
+
+The modification had to happen in this fork, as `native-tls` doesn't 
+provide low level access to OpenSSL Contexts.
+
 # rust-native-tls
 
 [Documentation](https://docs.rs/native-tls)

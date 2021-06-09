@@ -8,7 +8,7 @@ use self::openssl::pkcs12::Pkcs12;
 use self::openssl::pkey::{PKey, Private};
 use self::openssl::ssl::{
     self, MidHandshakeSslStream, SslAcceptor, SslConnector, SslContextBuilder, SslMethod,
-    SslVerifyMode,
+    SslVerifyMode, SslOptions
 };
 use self::openssl::x509::{store::X509StoreBuilder, X509VerifyResult, X509};
 use std::error;
@@ -319,6 +319,10 @@ impl TlsConnector {
                 connector.set_alpn_protos(&alpn_wire_format)?;
             }
         }
+
+        // Required to support older windows instances with broken TLS 1.0 implementations.
+        let options = connector.options() | SslOptions::DONT_INSERT_EMPTY_FRAGMENTS;
+        connector.set_options(options);
 
         #[cfg(target_os = "android")]
         load_android_root_certs(&mut connector)?;
